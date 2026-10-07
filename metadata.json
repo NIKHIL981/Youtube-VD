@@ -1,0 +1,6 @@
+{
+  "name": "TubeVault - YouTube Player & Offline Downloader",
+  "description": "Stream any YouTube video in high definition and download videos in 4K, 1080p, 720p, or MP3 directly to your phone storage for seamless offline viewing.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
