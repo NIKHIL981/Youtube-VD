@@ -24,17 +24,17 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v3
-
       - name: Install dependencies
         run: npm install --legacy-peer-deps
 
       - name: Build Web Assets
         run: npm run build
 
-      - name: Sync Capacitor Android
-        run: npx cap sync android
+      - name: Copy Assets to Android App
+        run: |
+          mkdir -p android/app/src/main/assets/public
+          cp -r dist/* android/app/src/main/assets/public/
+          echo '{"appId":"com.tubevault.app","appName":"TubeVault","webDir":"dist"}' > android/app/src/main/assets/capacitor.config.json
 
       - name: Build Android APK with Gradle
         run: |
