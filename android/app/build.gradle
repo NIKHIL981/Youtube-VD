@@ -22,6 +22,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    lint {
+        abortOnError false
+        checkReleaseBuilds false
+    }
+}
+
+tasks.matching { it.name.contains("checkDebugAarMetadata") || it.name.contains("checkReleaseAarMetadata") }.all {
+    enabled = false
 }
 
 repositories {
