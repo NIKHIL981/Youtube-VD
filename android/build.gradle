@@ -8,9 +8,8 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:8.2.2'
-        classpath 'com.google.gms:google-services:4.4.2'
     }
-    configurations.classpath {
+    configurations.all {
         resolutionStrategy {
             force 'org.bouncycastle:bcprov-jdk18on:1.78.1'
         }
@@ -23,6 +22,11 @@ allprojects {
     repositories {
         google()
         mavenCentral()
+    }
+    configurations.all {
+        resolutionStrategy {
+            force 'org.bouncycastle:bcprov-jdk18on:1.78.1'
+        }
     }
 }
 
