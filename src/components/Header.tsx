@@ -9,6 +9,7 @@ import {
   WifiOff,
   Sparkles,
   Layers,
+  Share2,
 } from 'lucide-react';
 import { StorageQuotaInfo } from '../types/youtube';
 
@@ -128,6 +129,31 @@ export const Header: React.FC<HeaderProps> = ({
             >
               {offlineMode ? <WifiOff className="w-3.5 h-3.5 text-amber-400 animate-pulse" /> : <Wifi className="w-3.5 h-3.5 text-emerald-400" />}
               <span className="hidden lg:inline">{offlineMode ? 'Offline Mode' : 'Online'}</span>
+            </button>
+
+            {/* Share App Button */}
+            <button
+              onClick={async () => {
+                if (navigator.share) {
+                  try {
+                    await navigator.share({
+                      title: 'TubeVault - YouTube Video Downloader',
+                      text: 'Stream and download YouTube videos in 4K, 1080p, and MP3 directly to your phone!',
+                      url: window.location.href,
+                    });
+                  } catch (err) {
+                    console.log('Share canceled or failed', err);
+                  }
+                } else {
+                  await navigator.clipboard.writeText(window.location.href);
+                  alert('App link copied to clipboard!');
+                }
+              }}
+              title="Share TubeVault App"
+              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium border bg-zinc-900 border-zinc-800 text-zinc-300 hover:text-white hover:bg-zinc-800 transition-all"
+            >
+              <Share2 className="w-3.5 h-3.5 text-red-500" />
+              <span className="hidden sm:inline">Share</span>
             </button>
 
             {/* Navigation Tabs */}
