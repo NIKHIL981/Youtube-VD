@@ -37,10 +37,12 @@ jobs:
           echo '{"appId":"com.tubevault.app","appName":"TubeVault","webDir":"dist"}' > android/app/src/main/assets/capacitor.config.json
 
       - name: Build Android APK with Gradle
+        env:
+          ANDROID_HOME: ${{ env.ANDROID_HOME }}
         run: |
           cd android
           chmod +x gradlew
-          ./gradlew assembleDebug --no-daemon
+          ./gradlew assembleDebug --no-daemon --stacktrace
 
       - name: Upload Debug APK Artifact
         uses: actions/upload-artifact@v4
