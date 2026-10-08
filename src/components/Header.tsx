@@ -131,7 +131,24 @@ export const Header: React.FC<HeaderProps> = ({
               <span className="hidden lg:inline">{offlineMode ? 'Offline Mode' : 'Online'}</span>
             </button>
 
-            {/* Share App Button */}
+            {/* Direct WhatsApp Share Button */}
+            <a
+              href={`https://api.whatsapp.com/send?text=${encodeURIComponent(
+                '🔥 Download & Stream YouTube videos in 4K, 1080p, or MP3 directly to your phone storage!\n\nOpen & Install TubeVault App:\n' + window.location.href
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Share directly via WhatsApp"
+              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-emerald-600 hover:bg-emerald-500 text-white shadow-sm transition-all active:scale-95"
+            >
+              <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.669-.699c.969.529 1.839.814 2.791.814 3.179 0 5.766-2.587 5.767-5.766.001-3.18-2.585-5.768-5.767-5.768zm3.376 8.163c-.144.405-.837.774-1.17.823-.312.045-.694.072-2.131-.497-1.745-.692-2.883-2.454-2.97-2.57-.087-.116-.708-.941-.708-1.794 0-.853.449-1.272.608-1.446.16-.174.348-.217.464-.217.116 0 .232.001.333.006.107.005.249-.041.39.297.144.348.492 1.201.535 1.288.044.087.072.189.015.304-.058.116-.087.188-.174.29-.087.101-.183.226-.261.304-.087.087-.178.182-.077.355.101.174.45 1.744 1.348 2.544.898.8 1.408.835 1.639.734.232-.102.738-.725.934-.972.196-.246.392-.203.653-.102.261.101 1.652.779 1.935.92.283.141.471.21.541.328.07.117.07.676-.074 1.081z"/>
+                <path d="M12 2C6.477 2 2 6.477 2 12c0 1.891.523 3.662 1.433 5.178L2 22l4.981-1.307C8.423 21.537 10.15 22 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.2c-1.636 0-3.17-.487-4.464-1.327l-.321-.208-2.964.777.791-2.89-.228-.363C3.907 14.869 3.4 13.483 3.4 12c0-4.742 3.858-8.6 8.6-8.6 4.742 0 8.6 3.858 8.6 8.6 0 4.742-3.858 8.6-8.6 8.6z"/>
+              </svg>
+              <span>WhatsApp</span>
+            </a>
+
+            {/* Quick Share / System Share */}
             <button
               onClick={async () => {
                 if (navigator.share) {
@@ -142,7 +159,7 @@ export const Header: React.FC<HeaderProps> = ({
                       url: window.location.href,
                     });
                   } catch (err) {
-                    console.log('Share canceled or failed', err);
+                    console.log('Share canceled', err);
                   }
                 } else {
                   await navigator.clipboard.writeText(window.location.href);
@@ -152,7 +169,7 @@ export const Header: React.FC<HeaderProps> = ({
               title="Share TubeVault App"
               className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium border bg-zinc-900 border-zinc-800 text-zinc-300 hover:text-white hover:bg-zinc-800 transition-all"
             >
-              <Share2 className="w-3.5 h-3.5 text-red-500" />
+              <Share2 className="w-3.5 h-3.5 text-zinc-400" />
               <span className="hidden sm:inline">Share</span>
             </button>
 
